@@ -11,12 +11,12 @@ export default new Router({
   mode: 'history', // to remove the ugly '/#/' from the URL
   routes: [
     {
-        path: '/signin',
+        path: '/',
         name: 'SignIn',
         component: SignIn
     },
     {
-        path: '/',
+        path: '/form',
         name: 'Form',
         component: Form
     },
