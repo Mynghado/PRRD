@@ -3,7 +3,9 @@
     <nav class="white">
         <div class="container">
             <div class="nav-wrapper">
-                <a href="/" class="brand-logo black-text">[ Logo ]</a>
+                <a href="/" class="brand-logo">
+                    <img class="responsive-img" src="../images/Logo.png" alt="">
+                </a>
                 <a href="" class="sidenav-trigger " data-target="mobile-menu">
                     <i class="material-icons black-text">menu</i>
                 </a>
@@ -70,7 +72,7 @@ export default {
 </script>
 
 <style>
-a {
-    @extend .blue-text;
+.nav-wrapper .brand-logo img {
+    height: 60px;
 }
 </style>
