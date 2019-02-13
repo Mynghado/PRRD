@@ -10,7 +10,7 @@
                             <div class="divider black "></div>
                             <div class="input-field ">
                                 <input v-model="project_name" id="project_name" type="text" class="validate">
-                                <label for="project_name" class="deep-purple-text">Nom du projet</label>
+                                <label for="project_name">Nom du projet</label>
                             </div>
                             <div class="input-field ">
                                 <input v-model="project_manager" id="project_manager" type="text" class="validate">  
