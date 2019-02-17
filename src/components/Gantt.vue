@@ -1,10 +1,6 @@
 <template>
-       
   <div ref="gantt"></div>
-           
 </template>
-
-
 
 <script>
 import 'dhtmlx-gantt'
@@ -64,7 +60,7 @@ export default {
   },
     
   mounted () {
-    this.$_initGanttEvents();
+    this.$_initGanttEvents()
 
     gantt.init(this.$refs.gantt)
     gantt.parse(this.$props.tasks)
@@ -72,12 +68,6 @@ export default {
 }
 </script>
 
-
-
-
-
 <style>
-@import "~dhtmlx-gantt/codebase/dhtmlxgantt.css";
-
-
+  @import "~dhtmlx-gantt/codebase/dhtmlxgantt.css";
 </style>

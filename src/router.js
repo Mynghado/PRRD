@@ -5,7 +5,7 @@ import SignIn from './views/SignIn'
 import ProjectList from './views/ProjectList'
 import Home from './views/Home'
 import AddProject from './views/AddProject'
-import Gantt from './views/Gantt'
+import VueGantt from './views/VueGantt'
 
 Vue.use(Router)
 
@@ -29,14 +29,14 @@ export default new Router({
         component: ProjectList
     },
     {
-        path: '/add_project',
-        name: 'AddProject',
-        component: AddProject
+      path: '/add_project',
+      name: 'AddProject',
+      component: AddProject
     },
     {
       path: '/gantt',
-      name: 'Gantt',
-      component: Gantt
+      name: 'VueGantt',
+      component: VueGantt
     }
-  ]
+]
 })
