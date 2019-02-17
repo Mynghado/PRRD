@@ -1,17 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import SignIn from './../components/SignIn'
-import Form from './../components/Form'
-import Planning from './../components/Planning'
+import SignIn from './views/SignIn'
+import Form from './views/Form'
+import Planning from './views/Planning'
 
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history', // to remove the ugly '/#/' from the URL
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes: [
     {
-        path: '/',
+      path: '/',
+      name: 'SignIn',
+      component: SignIn
+    },
+    {
+        path: '/signin',
         name: 'SignIn',
         component: SignIn
     },

@@ -1,26 +1,26 @@
 <template>
-  <div id="app">
-      <NavBar />
-      <router-view/>
-      <Footer />
-  </div>
+    <v-app class="grey lighten-4">
+        <NavBar />
+        <v-content>
+          <router-view/>
+        </v-content>
+  </v-app>
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue'
-import Footer from './components/Footer.vue'
+import NavBar from './views/NavBar.vue'
+import Footer from './views/Footer.vue'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     NavBar,
     Footer
+  },
+  data () {
+    return {
+      //
+    }
   }
 }
 </script>
-
-<style>
-#app {
-
-}
-</style>

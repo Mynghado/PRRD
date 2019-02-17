@@ -1,13 +1,12 @@
 import Vue from 'vue'
+import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
+import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
 new Vue({
-  el: '#app',
-  components: { App },
-  template: '<App/>',
-  render: h => h(App),
-  router
+  router,
+  render: h => h(App)
 }).$mount('#app')
