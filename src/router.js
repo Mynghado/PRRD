@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import SignIn from './views/SignIn'
-import Form from './views/Form'
-import Planning from './views/Planning'
+import ProjectList from './views/ProjectList'
+import Home from './views/Home'
+import AddProject from './views/AddProject'
 
 Vue.use(Router)
 
@@ -13,23 +14,23 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'SignIn',
-      component: SignIn
+      name: 'Home',
+      component: Home
     },
     {
-        path: '/signin',
+        path: '/sign',
         name: 'SignIn',
         component: SignIn
     },
     {
-        path: '/form',
-        name: 'Form',
-        component: Form
+        path: '/project_list',
+        name: 'ProjectList',
+        component: ProjectList
     },
     {
-        path: '/planning',
-        name: 'Planning',
-        component: Planning
+        path: '/add_project',
+        name: 'AddProject',
+        component: AddProject
     }
   ]
 })

@@ -1,21 +1,19 @@
 <template>
-    <v-app class="grey lighten-4">
-        <NavBar />
-        <v-content>
+    <v-app>
+        <NavBar/>
+        <v-content class="grey lighten-4">
           <router-view/>
         </v-content>
   </v-app>
 </template>
 
 <script>
-import NavBar from './views/NavBar.vue'
-import Footer from './views/Footer.vue'
+import NavBar from './components/NavBar.vue'
 
 export default {
   name: 'App',
   components: {
-    NavBar,
-    Footer
+    NavBar
   },
   data () {
     return {
