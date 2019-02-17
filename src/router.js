@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import SignIn from './views/SignIn'
 import Form from './views/Form'
 import Planning from './views/Planning'
+import Gantt from './views/Gantt'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ export default new Router({
         path: '/planning',
         name: 'Planning',
         component: Planning
+    },
+    {
+      path: '/gantt',
+      name: 'Gantt',
+      component: Gantt
     }
   ]
 })
