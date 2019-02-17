@@ -6,6 +6,7 @@ import ProjectList from './views/ProjectList'
 import Home from './views/Home'
 import AddProject from './views/AddProject'
 
+
 Vue.use(Router)
 
 export default new Router({
@@ -31,6 +32,11 @@ export default new Router({
         path: '/add_project',
         name: 'AddProject',
         component: AddProject
+    },
+    {
+      path: '/gantt',
+      name: 'Gantt',
+      component: Gantt
     }
   ]
 })
