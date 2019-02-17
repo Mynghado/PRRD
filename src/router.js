@@ -5,7 +5,7 @@ import SignIn from './views/SignIn'
 import ProjectList from './views/ProjectList'
 import Home from './views/Home'
 import AddProject from './views/AddProject'
-
+import Gantt from './views/Gantt'
 
 Vue.use(Router)
 
