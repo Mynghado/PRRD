@@ -51,7 +51,7 @@
                     <v-text-field v-model="partners" :rules="inputRules" label="Partenaires" prepend-icon="people_outline"></v-text-field>
                     
                     <v-layout align-center justify-end row>
-                        <v-btn outline>Annuler</v-btn>
+                        <v-btn outline @click="cancel">Annuler</v-btn>
                         <v-btn depressed color="grey white--text" @click="submit">Ajouter</v-btn>
                     </v-layout>
                 </v-form>
@@ -75,7 +75,6 @@ export default {
             dateRules: [
                 v => v.length >= 1 || 'Ce champ est obligatoire'
             ],
-            valid: true,
 
             project_name: '',
             project_manager: '',
@@ -99,10 +98,22 @@ export default {
         submit () {
             if(this.$refs.form.validate()) {
                 console.log(this.project_name)
+                console.log(this.project_manager)
+                console.log(this.project_director)
+                console.log(this.project_team)
+                console.log(this.description)
+                console.log(this.marker)
+                console.log(this.deliverable)
+                console.log(this.human_resources)
+                console.log(this.material_resources)
+                console.log(this.it_resources)
+                console.log(this.planned_budget)
+                console.log(this.partners)
             }
-            else {
-                console.log("non")
-            }
+        },
+
+        cancel() {
+            this.$router.push({ name: 'Home'})
         }
     },
 
