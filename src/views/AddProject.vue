@@ -33,7 +33,7 @@
                         <v-date-picker v-model="marker" locale="fr"
                             no-title multiple scrollable>
                             <v-spacer></v-spacer>
-                            <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
+                            <v-btn flat color="primary" @click="menu = false">Annuler</v-btn>
                             <v-btn flat color="primary" @click="$refs.menu.save(marker)">OK</v-btn>
                         </v-date-picker>
                     </v-menu>
