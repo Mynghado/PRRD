@@ -1,5 +1,4 @@
 <template>
-    <div id="form">
         <v-container>
         <v-layout row>
         <v-flex xs12 sm10 offset-sm1 >
@@ -8,38 +7,52 @@
                 <h1>Formulaire de suivi de projet</h1>
             </v-card-title>
             <v-card-text>
-                <v-form>
+                <v-form ref="form">
                     <h2>Projet</h2>
                     <v-divider/>
-                    <v-text-field v-model="project_name" label="Nom du projet" prepend-icon="create"></v-text-field>
-                    <v-text-field v-model="project_manager" label="Chef de projet" prepend-icon="person"></v-text-field>
-                    <v-text-field v-model="project_director" label="Directeur de projet" prepend-icon="person"></v-text-field>
-                    <v-text-field v-model="project_team" label="Équipe de projet" prepend-icon="people"></v-text-field>
-                    <v-textarea v-model="description" label="Description" prepend-icon="description" rows="2"></v-textarea>
+                    <v-text-field v-model="project_name" :rules="inputRules" label="Nom du projet" prepend-icon="create"></v-text-field>
+                    <v-text-field v-model="project_manager" :rules="inputRules" label="Chef de projet" prepend-icon="person"></v-text-field>
+                    <v-text-field v-model="project_director" :rules="inputRules" label="Directeur de projet" prepend-icon="person"></v-text-field>
+                    <v-text-field v-model="project_team" :rules="inputRules" label="Équipe de projet" prepend-icon="people"></v-text-field>
+                    <v-textarea v-model="description" :rules="inputRules" label="Description" prepend-icon="description" rows="2"></v-textarea>
 
                     <h2>Calendrier</h2>
                     <v-divider/>
-                    <v-menu>
-                        <v-text-field :value="marker" slot="activator" label="Jalons" prepend-icon="date_range"></v-text-field>
-                        <v-date-picker v-model="marker"></v-date-picker>
-                        <v-icon>add</v-icon>
+                    <v-menu ref="menu"
+                        v-model="menu"
+                        :close-on-content-click="false" lazy :nudge-right="40"
+                        transition="scale-transition" offset-y full-width min-width="290px"
+                    :return-value.sync="marker">
+                        <v-combobox
+                            v-model="marker"
+                            slot="activator"
+                            label="Jalons"
+                            prepend-icon="event" multiple chips small-chips
+                            readonly>
+                        </v-combobox>  
+                        <v-date-picker v-model="marker" locale="fr"
+                            multiple scrollable>
+                            <v-spacer></v-spacer>
+                            <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
+                            <v-btn flat color="primary" @click="$refs.menu.save(marker)">OK</v-btn>
+                        </v-date-picker>
                     </v-menu>
-                    <v-text-field v-model="deliverable" label="Livrables" prepend-icon="note_add"></v-text-field>
+                    <v-text-field v-model="deliverable" :rules="inputRules" label="Livrables" prepend-icon="note_add"></v-text-field>
 
                     <h2>Moyens nécessaires</h2>
                     <v-divider/>
-                    <v-text-field v-model="human_resources" label="Humains (hormis l'équipe)" prepend-icon="person"></v-text-field>
-                    <v-text-field v-model="material_resources" label="Matériels" prepend-icon="build"></v-text-field>
-                    <v-text-field v-model="it_resources" label="Informatiques" prepend-icon="laptop"></v-text-field>
+                    <v-text-field v-model="human_resources" :rules="inputRules" label="Humains (hormis l'équipe)" prepend-icon="person"></v-text-field>
+                    <v-text-field v-model="material_resources" :rules="inputRules" label="Matériels" prepend-icon="build"></v-text-field>
+                    <v-text-field v-model="it_resources" :rules="inputRules" label="Informatiques" prepend-icon="laptop"></v-text-field>
 
                     <h2>Autres</h2>
                     <v-divider/>
-                    <v-text-field v-model="envisaged_financial_budget" label="Budgets et financements envisagés" prepend-icon="euro_symbol"></v-text-field>
-                    <v-text-field v-model="partners" label="Partenaires" prepend-icon="people_outline"></v-text-field>
+                    <v-text-field v-model="planned_budget" :rules="inputRules" label="Budgets et financements envisagés" prepend-icon="euro_symbol"></v-text-field>
+                    <v-text-field v-model="partners" :rules="inputRules" label="Partenaires" prepend-icon="people_outline"></v-text-field>
                     
                     <v-layout align-center justify-end row>
                         <v-btn outline>Annuler</v-btn>
-                        <v-btn depressed color="grey white--text">Ajouter</v-btn>
+                        <v-btn depressed color="grey white--text" @click="submit">Ajouter</v-btn>
                     </v-layout>
                 </v-form>
             </v-card-text>
@@ -47,33 +60,43 @@
         </v-flex>
         </v-layout>
         </v-container>
-    </div>
 </template>
 
 <script>
 export default {
+    /* eslint-disable */
     name: 'Form',
     data() {
         return {
+            inputRules: [
+                v => !! v || 'Ce champ est obligatoire',
+                v => v.length >= 3 || 'La longueur minimale de ce champ est de 3 caractères'
+            ],
             valid: true,
 
-            project_name: null,
-            project_manager: null,
-            project_director: null,
-            project_team: null,
-            description: null,
+            project_name: '',
+            project_manager: '',
+            project_director: '',
+            project_team: '',
+            description: '',
 
-            marker: null,
-            deliverable: null,
+            menu: false,
+            marker: [],
+            deliverable: '',
 
-            human_resources: null,
-            material_resources: null,
-            it_resources: null
+            human_resources: '',
+            material_resources: '',
+            it_resources: '',
+
+            planned_budget: '',
+            partners: ''
         }
     },
     methods: {
         submit () {
-            //console.log(this.project_name)
+            if(this.$refs.form.validate()) {
+                console.log(this.project_name)
+            }
         }
     },
 
