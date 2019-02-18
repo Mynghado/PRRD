@@ -24,14 +24,14 @@
                         transition="scale-transition" offset-y full-width min-width="290px"
                     :return-value.sync="marker">
                         <v-combobox
-                            v-model="marker"
+                            v-model="marker" :rules="dateRules"
                             slot="activator"
                             label="Jalons"
                             prepend-icon="event" multiple chips small-chips
                             readonly>
                         </v-combobox>  
                         <v-date-picker v-model="marker" locale="fr"
-                            multiple scrollable>
+                            no-title multiple scrollable>
                             <v-spacer></v-spacer>
                             <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
                             <v-btn flat color="primary" @click="$refs.menu.save(marker)">OK</v-btn>
@@ -72,6 +72,9 @@ export default {
                 v => !! v || 'Ce champ est obligatoire',
                 v => v.length >= 3 || 'La longueur minimale de ce champ est de 3 caractères'
             ],
+            dateRules: [
+                v => v.length >= 1 || 'Ce champ est obligatoire'
+            ],
             valid: true,
 
             project_name: '',
@@ -96,6 +99,9 @@ export default {
         submit () {
             if(this.$refs.form.validate()) {
                 console.log(this.project_name)
+            }
+            else {
+                console.log("non")
             }
         }
     },
