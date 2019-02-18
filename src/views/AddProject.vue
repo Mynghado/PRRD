@@ -42,68 +42,28 @@
                 rows="2"
               ></v-textarea>
 
-<<<<<<< HEAD
-                    <h2>Calendrier</h2>
-                    <v-divider/>
-                    <v-menu ref="menu"
-                        v-model="menu"
-                        :close-on-content-click="false" lazy :nudge-right="40"
-                        transition="scale-transition" offset-y full-width min-width="290px"
-                    :return-value.sync="marker">
-                        <v-combobox
-                            v-model="marker" :rules="dateRules"
-                            slot="activator"
-                            label="Jalons"
-                            prepend-icon="event" multiple chips small-chips
-                            readonly>
-                        </v-combobox>  
-                        <v-date-picker v-model="marker" locale="fr"
-                            no-title multiple scrollable>
-                            <v-spacer></v-spacer>
-                            <v-btn flat color="primary" @click="menu = false">Annuler</v-btn>
-                            <v-btn flat color="primary" @click="$refs.menu.save(marker)">OK</v-btn>
-                        </v-date-picker>
-                    </v-menu>
-                    <v-text-field v-model="deliverable" :rules="inputRules" label="Livrables" prepend-icon="note_add"></v-text-field>
-=======
               <h2>Calendrier</h2>
               <v-divider/>
-              <v-menu
-                ref="menu"
-                v-model="menu"
-                :close-on-content-click="false"
-                lazy
-                :nudge-right="40"
-                transition="scale-transition"
-                offset-y
-                full-width
-                min-width="290px"
-                :return-value.sync="marker"
-              >
-                <v-combobox
-                  v-model="marker"
-                  :rules="dateRules"
-                  slot="activator"
-                  label="Jalons"
-                  prepend-icon="event"
-                  multiple
-                  chips
-                  small-chips
-                  readonly
-                ></v-combobox>
-                <v-date-picker v-model="marker" locale="fr" no-title multiple scrollable>
-                  <v-spacer></v-spacer>
-                  <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
-                  <v-btn flat color="primary" @click="$refs.menu.save(marker)">OK</v-btn>
-                </v-date-picker>
-              </v-menu>
-              <v-text-field
-                v-model="deliverable"
-                :rules="inputRules"
-                label="Livrables"
-                prepend-icon="note_add"
-              ></v-text-field>
->>>>>>> 0025fe796163599324f19c87afe45c5200cbfb0b
+                <v-menu ref="menu"
+                  v-model="menu"
+                  :close-on-content-click="false" lazy :nudge-right="40"
+                  transition="scale-transition" offset-y full-width min-width="290px"
+                  :return-value.sync="marker">
+                  <v-combobox
+                    v-model="marker" :rules="dateRules"
+                    slot="activator"
+                    label="Jalons"
+                    prepend-icon="event" multiple chips small-chips
+                    readonly
+                  ></v-combobox>  
+                  <v-date-picker v-model="marker" locale="fr"
+                    no-title multiple scrollable>
+                    <v-spacer></v-spacer>
+                    <v-btn flat color="primary" @click="menu = false">Annuler</v-btn>
+                    <v-btn flat color="primary" @click="$refs.menu.save(marker)">OK</v-btn>
+                  </v-date-picker>
+                </v-menu>
+                <v-text-field v-model="deliverable" :rules="inputRules" label="Livrables" prepend-icon="note_add"></v-text-field>
 
               <h2>Moyens nécessaires</h2>
               <v-divider/>
