@@ -120,10 +120,8 @@ export default {
   data() {
     return {
       inputRules: [
-        v => !!v || "Ce champ est obligatoire",
-        v =>
-          v.length >= 3 ||
-          "La longueur minimale de ce champ est de 3 caractères"
+        v => !! v || "Ce champ est obligatoire",
+        v => v.length >= 3 || "La longueur minimale de ce champ est de 3 caractères"
       ],
       dateRules: [v => v.length >= 1 || "Ce champ est obligatoire"],
 
@@ -169,18 +167,7 @@ export default {
   },
 
   mounted() {
-    /*document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.datepicker');
-            var instances = M.Datepicker.init(elems, {
-                format: "dd-mm-yyyy",
-                selectMonths: true,
-                selectYears: true,
-                showClearBtn: true, 
-                i18n: {
 
-                }
-            });
-        });*/
   }
 };
 </script>
