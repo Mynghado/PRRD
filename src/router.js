@@ -6,6 +6,8 @@ import ProjectList from './views/ProjectList'
 import Home from './views/Home'
 import AddProject from './views/AddProject'
 import VueGantt from './views/VueGantt'
+import NotFound from './views/NotFound'
+
 
 Vue.use(Router)
 
@@ -37,6 +39,11 @@ export default new Router({
       path: '/gantt',
       name: 'VueGantt',
       component: VueGantt
+    },
+    {
+      path: '*',
+      name: 'NotFound',
+      component: NotFound
     }
 ]
 })
