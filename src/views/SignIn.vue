@@ -34,7 +34,7 @@
                     round
                     color="primary"
                     dark
-                    @click="localStorage.setItem('ttt', true)"
+                    @click="connect"
                   >Se connecter</v-btn>
                 </div>
               </form>
@@ -56,6 +56,12 @@ export default {
       show_password: false,
       remember: false
     };
+  },
+  methods: {
+    connect() {
+      localStorage.setItem('connected', true)
+      this.$router.push({ name: "Home" });
+    }
   }
 };
 </script>
