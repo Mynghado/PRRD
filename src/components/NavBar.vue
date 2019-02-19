@@ -1,6 +1,11 @@
 <template>
 <div id="NavBar">
     <nav>
+        <v-snackbar v-model="snackbar" :timeout="4000" top color="success">
+            <span>Projet ajouté !</span>
+            <v-btn flat color="white" @click="snackbar = false">Fermer</v-btn>
+
+        </v-snackbar>
         <v-toolbar flat app color="grey lighten-2">
             <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title>
@@ -50,6 +55,7 @@ export default {
     data () {
         return {
             drawer: false,
+            snackbar: false,
             authenticated: localStorage.getItem('connected'),
             links: [
                 {
