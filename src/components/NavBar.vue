@@ -16,7 +16,7 @@
                 </v-btn>
                 <v-divider inset vertical></v-divider>    
             </v-toolbar-items>
-            <v-btn v-if="authenticated" @click="authenticated = !authenticated" dark depressed color="red darken-4" router :to="'/'">
+            <v-btn v-if="authenticated" @click="disconnect" dark depressed color="red darken-4" router :to="'/'">
                 <span class="hidden-xs-only">Se déconnecter</span>
                 <v-icon right>exit_to_app</v-icon>
                 <v-spacer></v-spacer>
@@ -50,7 +50,7 @@ export default {
     data () {
         return {
             drawer: false,
-            authenticated: false,
+            authenticated: localStorage.getItem('connected'),
             links: [
                 {
                     icon: 'home',
@@ -70,8 +70,14 @@ export default {
             ]
         }
     },
-    mounted () {
-
+    methods: {
+        disconnect() {
+            this.authenticated = false
+            localStorage.setItem('connected', this.authenticated)
+        }
+    },
+    updated () {
+        localStorage.getItem('connected')
     }
 }
 </script>
