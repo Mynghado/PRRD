@@ -51,9 +51,9 @@ export default {
         return {
             projects: [
                 { name: 'Nouvelle gestion des projets', manager: 'Laurent Poligny', marker: '2019-01-18', status: 'en cours', class: 'ongoing'},
-                { name: 'Internet Archive', manager: 'Geneviève Boyer', marker: '2023-03-12', status: 'en cours', class: 'ongoing'},
+                { name: 'Archivage des enluminures au CINES', manager: 'Geneviève Boyer', marker: '2023-03-12', status: 'en cours', class: 'ongoing'},
                 { name: 'Évènement tournage', manager: 'Marie Dubois', marker: '2017-12-23', status: 'terminé', class: 'done'},
-                { name: 'Atelier typographie', manager: 'Jean Dupont', marker: '2019-02-11', status: 'retardé', class: 'late'}
+                { name: 'Catalogue des Incunables', manager: 'Jean Dupont', marker: '2019-02-11', status: 'retardé', class: 'late'}
             ]
         }
     },
