@@ -3,7 +3,7 @@
     <!--<v-layout align-start justify-center row>
       <h1>Bienvenue</h1>
     </v-layout>-->
-        <v-layout row wrap>
+    <v-layout row wrap>
       <v-flex tag="h1" class="headline">Site actuellement en construction</v-flex>
       <v-flex d-flex xs12 order-xs5>
         <v-layout column>
