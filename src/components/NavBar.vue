@@ -8,7 +8,7 @@
         </v-snackbar>
         <v-toolbar flat app color="grey lighten-2">
             <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
-            <v-toolbar-title>
+            <v-toolbar-title class="text-uppercase">
                 <v-flex xs12>
                     <span class="px-0">Bibliothèque Sainte-Geneviève</span>
                 </v-flex>
