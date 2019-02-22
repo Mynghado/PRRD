@@ -3,6 +3,8 @@
 </template>
 
 <script>
+
+/*global gantt*/
 import 'dhtmlx-gantt'
 
 export default {
@@ -53,7 +55,7 @@ export default {
         this.$emit('link-updated', id, 'updated', link)
       })
 
-      gantt.attachEvent('onAfterLinkDelete', (id, link) => {
+      gantt.attachEvent('onAfterLinkDelete', (id) => {
         this.$emit('link-updated', id, 'deleted')
       })
       gantt.$_eventsInitialized = true;
