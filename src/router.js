@@ -7,7 +7,8 @@ import Home from './views/Home'
 import AddProject from './views/AddProject'
 import VueGantt from './views/VueGantt'
 import NotFound from './views/NotFound'
-
+import Team from './views/Team'
+import About from './views/About'
 
 Vue.use(Router)
 
@@ -29,6 +30,16 @@ export default new Router({
         path: '/project_list',
         name: 'ProjectList',
         component: ProjectList
+    },
+    {
+      path: '/team',
+      name: 'Team',
+      component: Team
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: About
     },
     {
       path: '/add_project',
