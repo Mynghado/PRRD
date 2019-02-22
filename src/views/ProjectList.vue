@@ -4,7 +4,7 @@
       <v-layout row justify-start class="mb-3">
         <v-tooltip top>
           <v-btn small flat color="grey" @click="sortBy('name')" slot="activator">
-            <v-icon small left>create</v-icon>
+            <v-icon small left>folder</v-icon>
             <span class="caption text-lowercase">Par nom de projet</span>
           </v-btn>
           <span>Trier en fonction du nom du projet</span>
@@ -15,6 +15,12 @@
             <span class="caption text-lowercase">Par chef de projet</span>
           </v-btn>
           <span>Trier en fonction du chef du projet</span>
+        </v-tooltip>
+        <v-tooltip top>
+          <v-btn small flat color="grey" @click="sortBy('name')" slot="activator">
+            <v-icon small left>create</v-icon>
+            <span @click="goToAddProject()" class="caption text-lowercase">Creer un nouveau suivi de projet</span>
+          </v-btn>
         </v-tooltip>
       </v-layout>
 
@@ -90,7 +96,10 @@ export default {
       this.projects.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
     },
     goToGantt() {
-            this.$router.push({ name: "gantt" });
+      this.$router.push({ name: "gantt" });
+    },
+    goToAddProject(){
+       this.$router.push({ name: "addProject" });
     }
   }
 };
