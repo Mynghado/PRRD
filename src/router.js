@@ -18,37 +18,37 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'home',
       component: Home
     },
     {
         path: '/sign',
-        name: 'SignIn',
+        name: 'signIn',
         component: SignIn
     },
     {
         path: '/project_list',
-        name: 'ProjectList',
+        name: 'projectList',
         component: ProjectList
     },
     {
       path: '/team',
-      name: 'Team',
+      name: 'team',
       component: Team
     },
     {
       path: '/about',
-      name: 'About',
+      name: 'about',
       component: About
     },
     {
       path: '/add_project',
-      name: 'AddProject',
+      name: 'addProject',
       component: AddProject
     },
     {
       path: '/gantt',
-      name: 'VueGantt',
+      name: 'gantt',
       component: VueGantt
     },
     {
