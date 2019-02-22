@@ -1,5 +1,5 @@
 <template>
-  <div ref="gantt"></div>
+  <div id="gantt" ref="gantt"></div>
 </template>
 
 <script>
@@ -13,7 +13,8 @@ export default {
       default () {
         return {data: [], links: []}
       }
-    }
+    },
+    readonly: Boolean
   },
 
   methods: {
@@ -56,6 +57,7 @@ export default {
         this.$emit('link-updated', id, 'deleted')
       })
       gantt.$_eventsInitialized = true;
+      gantt.config.readonly = this.$props.readonly;
     }
   },
     
@@ -70,4 +72,9 @@ export default {
 
 <style>
   @import "~dhtmlx-gantt/codebase/dhtmlxgantt.css";
+
+#gantt{
+    height: 20em;
+  }
+
 </style>
