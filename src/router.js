@@ -7,7 +7,8 @@ import Home from './views/Home'
 import AddProject from './views/AddProject'
 import VueGantt from './views/VueGantt'
 import NotFound from './views/NotFound'
-
+import Team from './views/Team'
+import About from './views/About'
 
 Vue.use(Router)
 
@@ -17,27 +18,37 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'home',
       component: Home
     },
     {
         path: '/sign',
-        name: 'SignIn',
+        name: 'signIn',
         component: SignIn
     },
     {
         path: '/project_list',
-        name: 'ProjectList',
+        name: 'projectList',
         component: ProjectList
     },
     {
+      path: '/team',
+      name: 'team',
+      component: Team
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: About
+    },
+    {
       path: '/add_project',
-      name: 'AddProject',
+      name: 'addProject',
       component: AddProject
     },
     {
       path: '/gantt',
-      name: 'VueGantt',
+      name: 'gantt',
       component: VueGantt
     },
     {
