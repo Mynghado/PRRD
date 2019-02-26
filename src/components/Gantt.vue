@@ -6,6 +6,7 @@
 
 /*global gantt*/
 import 'dhtmlx-gantt'
+import TasksService from '../services/tasksService'
 
 export default {
   name: 'gantt',
@@ -20,6 +21,15 @@ export default {
   },
 
   methods: {
+    async getTasks(){
+      const response = await TasksService.fetchTasks();
+      console.log(response.data);
+    },
+    async addTask(task){
+      const response = await TasksService.addTask(task);
+      console.log(response.data);
+    },
+
     $_initGanttEvents: function () {
       if(gantt.$_eventsInitialized)
         return;
@@ -31,6 +41,7 @@ export default {
       gantt.attachEvent('onAfterTaskAdd', (id, task) => {
         this.$emit('task-updated', id, 'inserted', task)
         task.progress = task.progress || 0
+        this.addTask(task);
         if(gantt.getSelectedId() == id) {
           this.$emit('task-selected', task)
         }
@@ -61,6 +72,7 @@ export default {
       gantt.$_eventsInitialized = true;
       gantt.config.readonly = this.$props.readonly;
     }
+    
   },
     
   mounted () {
@@ -68,6 +80,7 @@ export default {
 
     gantt.init(this.$refs.gantt)
     gantt.parse(this.$props.tasks)
+    this.getTasks();
   }
 }
 </script>
