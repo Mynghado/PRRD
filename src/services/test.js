@@ -16,7 +16,7 @@ export default {
   getTests() {
     return new Promise(async (resolve, reject) => {
       try {
-        const res = await axios.get(`http://localhost:3000/test/get`);
+        const res = await axios.get(`http://localhost:3000/test/`);
         const data = res.data;
         resolve(data);
       } catch (err) {
