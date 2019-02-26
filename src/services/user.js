@@ -1,4 +1,4 @@
-// project.js
+// user.js
 // TODO : Write parameters
 // TODO : Write request handling
 import axios from "axios";
@@ -10,18 +10,18 @@ export default {
 
 // CRUD Methods : User
   getUsers: () => {
-    axios.get(resourceURL), console.log("getUsers ");
+    return axios.get(resourceURL), console.log("getUsers ");
   },
   getUser: ({ id }) => {
-    axios.get(`${resourceURL}/${id}`), console.log("getUser");
+    return axios.get(`${resourceURL}/${id}`), console.log("getUser");
   },
   createUser: () => {
-    axios.post(resourceURL), console.log("createUser");
+    return axios.post(resourceURL), console.log("createUser");
   },
   updateUser: ({ id }) => {
-    axios.put(`${resourceURL}/${id}`), console.log("updateUser");
+    return axios.put(`${resourceURL}/${id}`), console.log("updateUser");
   },
   deleteUser: ({ id }) => {
-    axios.delete(`${resourceURL}/${id}`), console.log("deleteUser");
+    return axios.delete(`${resourceURL}/${id}`), console.log("deleteUser");
   }
 };

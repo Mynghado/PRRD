@@ -5,12 +5,22 @@ import axios from "axios";
 
 export default {
   data() {
-    return { resourceURL: "http://localhost:4000/projet " };
+    return { resourceURL: "http://localhost:27017/test" };
   },
 
   // CRUD Methods : Project
   getProjects: () => {
-    return axios.get(resourceURL), console.log("getProjects ");
+    return axios.get(`${resourceURL}/get`).then((response) => {
+      for (var i = 0; i < response.data.length; i++) {
+        this.tests.push({
+            id: response.data[i].id,                        
+            nom: response.data[i].nom,
+            age: response.data[i].age
+        })
+      }
+      return tests
+    }), 
+    console.log("getProjects ");
   },
   getProject: ({ id }) => {
     return axios.get(`${resourceURL}/${id}`), console.log("getProject");
