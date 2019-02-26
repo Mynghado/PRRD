@@ -51,7 +51,3 @@ export default {
     return axios.delete(`http://localhost:3000/test/${id}`);
   }
 };
-
-// CRUD Methods : Tasks
-
-// CRUD Methods : People
