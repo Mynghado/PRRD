@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <gantt class="left-container"></gantt>
+    <gantt :readonly="false" class="left-container"></gantt>
   </div>
 </template>
 
