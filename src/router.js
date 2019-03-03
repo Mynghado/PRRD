@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from './store.js'
 
-import SignIn from './views/SignIn'
+import Login from './views/Login'
 import ProjectList from './views/ProjectList'
 import Home from './views/Home'
 import AddProject from './views/AddProject'
@@ -12,7 +13,9 @@ import About from './views/About'
 
 Vue.use(Router)
 
-export default new Router({
+
+
+let router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -22,14 +25,17 @@ export default new Router({
       component: Home
     },
     {
-        path: '/sign',
-        name: 'signIn',
-        component: SignIn
+        path: '/login',
+        name: 'login',
+        component: Login
     },
     {
         path: '/project_list',
         name: 'projectList',
-        component: ProjectList
+        component: ProjectList,
+        meta: { 
+          requiresAuth: true
+        }
     },
     {
       path: '/team',
@@ -44,12 +50,18 @@ export default new Router({
     {
       path: '/add_project',
       name: 'addProject',
-      component: AddProject
+      component: AddProject,
+      meta: { 
+        requiresAuth: true
+      }
     },
     {
       path: '/gantt',
       name: 'gantt',
-      component: VueGantt
+      component: VueGantt,
+      meta: { 
+        requiresAuth: true
+      }
     },
     {
       path: '*',
@@ -58,3 +70,17 @@ export default new Router({
     }
 ]
 })
+
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters.isLoggedIn) {
+      next()
+      return
+    }
+    next('/login') 
+  } else {
+    next() 
+  }
+})
+
+export default router;

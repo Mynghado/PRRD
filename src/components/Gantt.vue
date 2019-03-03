@@ -95,7 +95,6 @@ export default {
       });
       gantt.$_eventsInitialized = true;
       gantt.config.readonly = this.$props.readonly;
-      gantt.l
     }
   },
 
