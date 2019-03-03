@@ -1,41 +1,53 @@
-// project.js
-// TODO : Write parameters
-// TODO : Write request handling
+/* eslint-disable */
+// test.js
+// TODO : Write other services files
+// TODO : Write common URL
+// TODO : Write error catching
 import axios from "axios";
 
 export default {
   data() {
-    return { resourceURL: "http://localhost:27017/test" };
+    return {
+      resourceURL: "http://localhost:3000/test"
+    };
   },
 
   // CRUD Methods : Project
-  getProjects: () => {
-    return axios.get(`${resourceURL}/get`).then((response) => {
-      for (var i = 0; i < response.data.length; i++) {
-        this.tests.push({
-            id: response.data[i].id,                        
-            nom: response.data[i].nom,
-            age: response.data[i].age
-        })
+  getTests() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await axios.get(`http://localhost:3000/test/`);
+        const data = res.data;
+        resolve(data);
+      } catch (err) {
+        reject(err);
       }
-      return tests
-    }), 
-    console.log("getProjects ");
+    });
   },
-  getProject: ({ id }) => {
-    return axios.get(`${resourceURL}/${id}`), console.log("getProject");
+  getTest(id) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await axios.get(`http://localhost:3000/test/${id}`);
+        const data = res.data;
+        resolve(data);
+      } catch (err) {
+        reject(err);
+      }
+    });
   },
-  createProject: () => {
-    return axios.post(resourceURL), console.log("createProject");
+  createTest(test) {
+    return axios.post(`http://localhost:3000/test`, {
+      nom: test.nom,
+      age: test.age
+    });
   },
-  updateProject: ({ id }) => {
-    return axios.put(`${resourceURL}/${id}`), console.log("updateProject");
+  updateTest(test) {
+    return axios.put(`http://localhost:3000/test/${test.id}`, {
+      nom: test.nom,
+      age: test.age
+    });
   },
-  deleteProject: ({ id }) => {
-    return axios.delete(`${resourceURL}/${id}`), console.log("deleteProject");
+  deleteTest(id) {
+    return axios.delete(`http://localhost:3000/test/${id}`);
   }
 };
-
-// CRUD Methods : Tasks
-
-// CRUD Methods : People
