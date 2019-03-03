@@ -114,6 +114,8 @@
 </template>
 
 <script>
+//import serviceProject from "../services/project";
+
 export default {
   /* eslint-disable */
   name: "Form",
@@ -140,24 +142,53 @@ export default {
       it_resources: "",
 
       planned_budget: "",
-      partners: ""
+      partners: "",
+
+      project: {
+        project_name: "", project_manager: "", project_director: "", project_team: "", description: "",
+        marker: "", deliverable: "", 
+        human_resources: "", material_resources: "", it_resources: "", 
+        planned_budget: "", partners: "",
+      }
     };
   },
   methods: {
-    submit() {
+    async submit() {
       if (this.$refs.form.validate()) {
+        this.project.project_name = this.project_name
+        this.project.project_manager = this.project_manager,
+        this.project.project_director = this.project_director,
+        this.project.project_team = this.project_team,
+        this.project.description = this.description,
+
+        this.project.marker = this.marker[0],
+        this.project.deliverable = this.deliverable,
+
+        this.project.human_resources = this.human_resources,
+        this.project.material_resources = this.material_resources,
+        this.project.it_resources = this.it_resources,
+
+        this.project.planned_budget = this.planned_budget,
+        this.project.partners = this.partners,
+
+        console.log(this.project);
         console.log(this.project_name);
         console.log(this.project_manager);
         console.log(this.project_director);
         console.log(this.project_team);
         console.log(this.description);
-        console.log(this.marker);
+        console.log(this.marker[0]);
         console.log(this.deliverable);
         console.log(this.human_resources);
         console.log(this.material_resources);
         console.log(this.it_resources);
         console.log(this.planned_budget);
         console.log(this.partners);
+
+        /*try {
+          await serviceProject.createProjet(this.testToCreate);
+        } catch (err) {}*/
+
       }
     },
 
