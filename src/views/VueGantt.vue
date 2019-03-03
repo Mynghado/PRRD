@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <gantt :readonly="false" class="left-container"></gantt>
+    <gantt class="left-container"></gantt>
   </div>
 </template>
 
@@ -18,6 +18,11 @@ export default {
   methods: {
     },
   mounted() {
+    gantt.config.readonly=false;
+  },
+  updated(){
+  },
+  destroyed(){
   }
 };
 </script>

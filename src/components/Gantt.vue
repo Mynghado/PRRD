@@ -99,6 +99,7 @@ export default {
   },
 
   mounted() {
+
     this.$_initGanttEvents();
     gantt.init(this.$refs.gantt);
     this.initData().then(data => {
