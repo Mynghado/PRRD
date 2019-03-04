@@ -55,7 +55,11 @@
 </template>
 
 <script>
+//import serviceProject from "../services/project";
+import serviceProject from "../services/projectService";
+
 export default {
+  /* eslint-disable */
   name: "ProjectList",
   data() {
     return {
@@ -88,7 +92,9 @@ export default {
           status: "retardé",
           class: "late"
         }
-      ]
+      ],
+
+      tests: null
     };
   },
   methods: {
@@ -100,7 +106,17 @@ export default {
     },
     goToAddProject(){
        this.$router.push({ name: "addProject" });
+    },
+    async loadDatas() {
+      try {
+        this.tests = await serviceProject.fetchProjects();
+      } catch (err) {}
+      console.log(this.tests.data[3].deliverable);
     }
+  },
+
+  created() {
+    this.loadDatas()
   }
 };
 </script>
