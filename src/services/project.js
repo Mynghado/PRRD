@@ -13,7 +13,7 @@ export default {
   },
 
   // CRUD Methods : Project
-  getProjets() {
+  getProjects() {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await axios.get(`http://localhost:3000/projet/`);
@@ -24,7 +24,7 @@ export default {
       }
     });
   },
-  getProjet(id) {
+  getProject(id) {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await axios.get(`http://localhost:3000/projet/${id}`);
@@ -35,17 +35,15 @@ export default {
       }
     });
   },
-  createProjet(projet) {
-    return axios.post(`http://localhost:3000/projet`, {
+  createProject(project) {
+    return axios.post(`http://localhost:3000/projet`, project);
+  },
+  updateProject(project) {
+    return axios.put(`http://localhost:3000/projet/${project.id}`, {
       // DATAS
     });
   },
-  updateProjet(projet) {
-    return axios.put(`http://localhost:3000/projet/${projet.id}`, {
-      // DATAS
-    });
-  },
-  deleteProjet(id) {
+  deleteProject(id) {
     return axios.delete(`http://localhost:3000/projet/${id}`);
   }
 };
