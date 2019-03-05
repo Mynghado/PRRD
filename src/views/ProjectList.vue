@@ -24,29 +24,29 @@
         </v-tooltip>
       </v-layout>
 
-      <v-card flat v-for="project in projects" :key="project.title">
-        <v-layout @click="goToGantt()" row wrap :class="`pa-3 project ${project.class}`">
+      <v-card flat v-for="project in projects.data" :key="project._id">
+        <v-layout @click="goToGantt()" row wrap :class="`pa-3 project `">
           <v-flex xs12 md6>
             <div class="caption grey--text">Nom du projet</div>
-            <div>{{ project.name }}</div>
+            <div>{{ project.project_name }}</div>
           </v-flex>
 
           <v-flex xs6 sm4 md2>
             <div class="caption grey--text">Chef de projet</div>
-            <div>{{ project.manager }}</div>
+            <div>{{ project.project_manager }}</div>
           </v-flex>
           <v-flex xs6 sm4 md2>
             <div class="caption grey--text">Date butoir</div>
             <div>{{ project.marker }}</div>
           </v-flex>
-          <v-flex xs2 sm4 md2>
+          <!--<v-flex xs2 sm4 md2>
             <div class="right hidden-xs-only">
               <v-chip
                 small
                 :class="`${project.class} white--text my-2 caption`"
               >{{ project.status }}</v-chip>
             </div>
-          </v-flex>
+          </v-flex>-->
         </v-layout>
         <v-divider></v-divider>
       </v-card>
@@ -55,7 +55,6 @@
 </template>
 
 <script>
-//import serviceProject from "../services/project";
 import serviceProject from "../services/projectService";
 
 export default {
@@ -65,36 +64,12 @@ export default {
     return {
       projects: [
         {
-          name: "Nouvelle gestion des projets",
-          manager: "Laurent Poligny",
-          marker: "2019-01-18",
-          status: "en cours",
-          class: "ongoing"
-        },
-        {
-          name: "Archivage des enluminures au CINES",
-          manager: "Geneviève Boyer",
-          marker: "2023-03-12",
-          status: "en cours",
-          class: "ongoing"
-        },
-        {
-          name: "Évènement tournage",
-          manager: "Marie Dubois",
-          marker: "2017-12-23",
-          status: "terminé",
-          class: "done"
-        },
-        {
-          name: "Catalogue des Incunables",
-          manager: "Jean Dupont",
-          marker: "2019-02-11",
-          status: "retardé",
-          class: "late"
+          _id: '',
+          project_name: '',
+          project_manager: '',
+          marker: ''
         }
-      ],
-
-      tests: null
+      ]
     };
   },
   methods: {
@@ -109,13 +84,12 @@ export default {
     },
     async loadDatas() {
       try {
-        this.tests = await serviceProject.fetchProjects();
+        this.projects = await serviceProject.fetchProjects();
       } catch (err) {}
-      console.log(this.tests.data[3].deliverable);
     }
   },
 
-  created() {
+  beforeMount() {
     this.loadDatas()
   }
 };
