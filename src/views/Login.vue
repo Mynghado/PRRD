@@ -1,5 +1,5 @@
 <template>
-  <div id="SignIn">
+  <div id="login">
     <v-container>
       <v-layout row>
         <v-flex xs12 sm8 offset-sm2 md6 offset-md3 lg4 offset-lg4>
@@ -13,7 +13,7 @@
               <form>
                 <v-flex xs12>
                   <v-text-field
-                    v-model="id"
+                    v-model="username"
                     label="Identifiant"
                     prepend-inner-icon="person"
                     outline
@@ -30,12 +30,7 @@
                   <v-checkbox v-model="remember" label="Se souvenir de moi"></v-checkbox>
                 </v-flex>
                 <div class="text-xs-center">
-                  <v-btn
-                    round
-                    color="primary"
-                    dark
-                    @click="connect"
-                  >Se connecter</v-btn>
+                  <v-btn round color="primary" dark @click="login">Se connecter</v-btn>
                 </div>
               </form>
             </v-card-text>
@@ -48,19 +43,24 @@
 
 <script>
 export default {
-  name: "SignIn",
+  name: "Login",
   data() {
     return {
-      id: null,
+      username: null,
       password: null,
       show_password: false,
       remember: false
     };
   },
   methods: {
-    connect() {
-      localStorage.setItem('connected', true)
-      this.$router.push({ name: "Home" });
+    login() {
+      let user = {
+        username: this.username,
+        password: this.password
+      };
+      this.$store.dispatch('login', user)
+       .then(() => this.$router.push({ name: "home" }))
+       .catch(err => console.log(err))
     }
   }
 };

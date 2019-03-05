@@ -95,11 +95,11 @@ export default {
       });
       gantt.$_eventsInitialized = true;
       gantt.config.readonly = this.$props.readonly;
-      gantt.l
     }
   },
 
   mounted() {
+
     this.$_initGanttEvents();
     gantt.init(this.$refs.gantt);
     this.initData().then(data => {
