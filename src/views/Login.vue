@@ -13,7 +13,7 @@
               <form>
                 <v-flex xs12>
                   <v-text-field
-                    v-model="username"
+                    v-model="nomUtilisateur"
                     label="Identifiant"
                     prepend-inner-icon="person"
                     outline
@@ -27,6 +27,7 @@
                     outline
                     @click:append="show_password = !show_password"
                   ></v-text-field>
+                  <v-alert v-if="errorMessage" :value="true" type="error">{{errorMessage}}</v-alert>
                   <v-checkbox v-model="remember" label="Se souvenir de moi"></v-checkbox>
                 </v-flex>
                 <div class="text-xs-center">
@@ -46,21 +47,23 @@ export default {
   name: "Login",
   data() {
     return {
-      username: null,
+      nomUtilisateur: null,
       password: null,
       show_password: false,
-      remember: false
+      remember: false,
+      errorMessage: null
     };
   },
   methods: {
     login() {
       let user = {
-        username: this.username,
+        nomUtilisateur: this.nomUtilisateur,
         password: this.password
       };
-      this.$store.dispatch('login', user)
-       .then(() => this.$router.push({ name: "home" }))
-       .catch(err => console.log(err))
+      this.$store
+        .dispatch("login", user)
+        .then(() => this.$router.push({ name: "home" }))
+        .catch(err => console.log(err) );
     }
   }
 };
