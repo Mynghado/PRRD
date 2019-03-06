@@ -174,9 +174,8 @@ export default {
         this.project.partners = this.partners
 
         try {
-          console.log("coucou")
           await serviceProject.addProject(this.project);
-          console.log("coucou2")
+          this.$router.push({ name: "projectList" });
         } catch (err) {}
       }
     },

@@ -6,24 +6,36 @@
 
 <script>
 import Gantt from "../components/Gantt";
+import TasksService from "../services/gantt/tasksService";
+
 export default {
+  /* eslint-disable */
   name: "app",
   components: { Gantt },
   data() {
-    return {
-    };
+    return {};
   },
-  filters: {
-  },
+  filters: {},
   methods: {
-    },
+    async fetchTasksWithLinksByProjectId(projectId) {
+      const response = await TasksService.fetchTasksWithLinksByProjectId(
+        projectId
+      );
+      return response.data;
+    }
+  },
   mounted() {
-    gantt.config.readonly=false;
+    gantt.clearAll();
+    gantt.config.readonly = false;
+    let projectId = this.$route.params.projectId;
+    this.fetchTasksWithLinksByProjectId(projectId).then(data => {
+      if (data) {
+        gantt.parse(data);
+      }
+    });
   },
-  updated(){
-  },
-  destroyed(){
-  }
+  updated() {},
+  destroyed() {}
 };
 </script>
 <style>

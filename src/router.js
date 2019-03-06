@@ -56,9 +56,10 @@ let router = new Router({
       }
     },
     {
-      path: '/gantt',
+      path: '/gantt/:projectId',
       name: 'gantt',
       component: VueGantt,
+      props: true,
       meta: { 
         requiresAuth: true
       }

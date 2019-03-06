@@ -7,7 +7,7 @@
     <v-layout row>
       <v-flex xs12>
         <div class="container">
-          <gantt class="left-container" :tasks="tasks"></gantt>
+          <gantt class="left-container"></gantt>
         </div>
       </v-flex>
     </v-layout>
@@ -58,44 +58,34 @@
 </template>
 
 <script>
+/* eslint-disable */
 import Gantt from "../components/Gantt";
+import TasksService from "../services/gantt/tasksService";
 export default {
   name: "Home",
   components: { Gantt },
   data() {
     return {
-      tasks: {
-        data: [
-          {
-            id: 1,
-            text: "Task #1",
-            start_date: "15-04-2017",
-            duration: 3,
-            progress: 0.6
-          },
-          {
-            id: 2,
-            text: "Task #2",
-            start_date: "18-04-2017",
-            duration: 3,
-            progress: 0.4
-          }
-        ],
-        links: [{ id: 1, source: 1, target: 2, type: "0" }]
-      },
-      selectedTask: null,
-      messages: [],
-      card_text: 'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.'
+      card_text:
+        "Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat."
     };
   },
-
-  mounted(){
-    gantt.config.readonly=true;
+  methods:{
+    async initData() {
+      const response = await TasksService.fetchTasksWithLinks();
+      return response.data;
+    },
   },
-  updated(){
+  mounted() {
+    gantt.config.readonly = true;
+    this.initData().then(data => {
+      if (data) {
+        gantt.parse(data);
+      }
+    });
   },
-  destroyed(){
-  }
+  updated() {},
+  destroyed() {}
 };
 </script>
 

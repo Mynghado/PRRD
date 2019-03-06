@@ -7,6 +7,9 @@ export default {
   fetchTasksWithLinks () {
     return TaskApi().get('/withLinks');
   },
+  fetchTasksWithLinksByProjectId (projectId) {
+    return TaskApi().get(projectId.toString());
+  },
   getTaskById(id){
     return TaskApi().get(id.toString());
   },

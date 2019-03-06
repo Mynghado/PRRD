@@ -7,9 +7,7 @@
 import "dhtmlx-gantt";
 import TasksService from "../services/gantt/tasksService";
 import LinksService from "../services/gantt/linksService";
-import "dhtmlx-gantt/codebase//locale/locale_fr.js"
-
-
+import "dhtmlx-gantt/codebase//locale/locale_fr.js";
 
 export default {
   name: "gantt",
@@ -29,8 +27,7 @@ export default {
       return response.data;
     },
     async addTask(task) {
-     await TasksService.addTask(task);
-  
+      await TasksService.addTask(task);
     },
     async updateTask(id, task) {
       await TasksService.updateTaskById(id, task);
@@ -47,7 +44,6 @@ export default {
     async deleteLinkById(id) {
       await LinksService.deleteLinkById(id);
     },
-
     $_initGanttEvents: function() {
       if (gantt.$_eventsInitialized) return;
       gantt.attachEvent("onTaskSelected", id => {
@@ -58,6 +54,7 @@ export default {
       gantt.attachEvent("onAfterTaskAdd", (id, task) => {
         this.$emit("task-updated", id, "inserted", task);
         task.progress = task.progress || 0;
+        task.projectId = this.$route.params.projectId;
         this.addTask(task);
         if (gantt.getSelectedId() == id) {
           this.$emit("task-selected", task);
@@ -66,7 +63,8 @@ export default {
 
       gantt.attachEvent("onAfterTaskUpdate", (id, task) => {
         this.$emit("task-updated", id, "updated", task);
-        if(task.id !== undefined){
+        if (task.id !== undefined) {
+          task.projectId = this.$route.params.projectId;
           this.updateTask(id, task);
         }
       });
@@ -81,11 +79,13 @@ export default {
 
       gantt.attachEvent("onAfterLinkAdd", (id, link) => {
         this.$emit("link-updated", id, "inserted", link);
+        link.projectId = this.$route.params.projectId;
         this.addLink(link);
       });
 
       gantt.attachEvent("onAfterLinkUpdate", (id, link) => {
         this.$emit("link-updated", id, "updated", link);
+        link.projectId = this.$route.params.projectId;
         this.updateLink(id, link);
       });
 
@@ -99,13 +99,8 @@ export default {
   },
 
   mounted() {
-
     this.$_initGanttEvents();
     gantt.init(this.$refs.gantt);
-    this.initData().then(data => {
-       gantt.parse(data);
-    });
-   
   }
 };
 </script>

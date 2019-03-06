@@ -25,7 +25,7 @@
       </v-layout>
 
       <v-card flat v-for="project in projects.data" :key="project._id">
-        <v-layout @click="goToGantt()" row wrap :class="`pa-3 project `">
+        <v-layout @click="goToGantt(project._id)" row wrap :class="`pa-3 project `">
           <v-flex xs12 md6>
             <div class="caption grey--text">Nom du projet</div>
             <div>{{ project.project_name }}</div>
@@ -76,8 +76,8 @@ export default {
     sortBy(prop) {
       this.projects.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
     },
-    goToGantt() {
-      this.$router.push({ name: "gantt" });
+    goToGantt(projectId) {
+      this.$router.push({ name: "gantt", params: {projectId: projectId} });
     },
     goToAddProject(){
        this.$router.push({ name: "addProject" });
