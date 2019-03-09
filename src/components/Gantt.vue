@@ -111,4 +111,44 @@ export default {
 #gantt {
   height: 20em;
 }
+.gantt_save_btn_set {
+  background: #367635 !important;
+}
+.gantt_delete_btn_set {
+  background: #961f39 !important;
+}
+.gantt_ok_button {
+  background: #367635 !important;
+}
+.gantt_task_line {
+  background: #367635 !important;
+}
+.gantt_scale_cell {
+  color: #367635 !important;
+  font-weight: bold;
+}
+.gantt_grid_head_cell {
+  color: #367635 !important;
+  font-weight: bold;
+}
+.gantt_tree_content{
+  color : #961f39 !important;
+  font-weight: bold;
+}
+
+.gantt_task_link .gantt_line_wrapper div {
+  background-color: #961f39;
+}
+
+.gantt_task_link:hover .gantt_line_wrapper div {
+  box-shadow: 0 0 5px 0px #961f39;
+}
+
+.gantt_task_link .gantt_link_arrow_right {
+  border-left-color: #961f39;
+}
+
+.gantt_task_link .gantt_link_arrow_left {
+  border-right-color: #961f39;
+}
 </style>

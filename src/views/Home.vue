@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-layout align-start justify-center row>
-      <h1>Bienvenue</h1>
+      <h1 class="display-2">Bienvenue</h1>
     </v-layout>
 
     <v-layout row>

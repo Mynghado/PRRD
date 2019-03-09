@@ -17,6 +17,7 @@
                     label="Identifiant"
                     prepend-inner-icon="person"
                     outline
+                    color="#961F39"
                   ></v-text-field>
                   <v-text-field
                     v-model="password"
@@ -25,13 +26,14 @@
                     label="Mot de passe"
                     prepend-inner-icon="lock"
                     outline
+                    color="#961F39"
                     @click:append="show_password = !show_password"
                   ></v-text-field>
                   <v-alert v-if="errorMessage" :value="true" type="error">{{errorMessage}}</v-alert>
-                  <v-checkbox v-model="remember" label="Se souvenir de moi"></v-checkbox>
+                  <v-checkbox v-model="remember" label="Se souvenir de moi" color="#961F39"></v-checkbox>
                 </v-flex>
                 <div class="text-xs-center">
-                  <v-btn round color="primary" dark @click="login">Se connecter</v-btn>
+                  <v-btn round color="#961F39" dark @click="login">Se connecter</v-btn>
                 </div>
               </form>
             </v-card-text>
@@ -63,7 +65,7 @@ export default {
       this.$store
         .dispatch("login", user)
         .then(() => this.$router.push({ name: "home" }))
-        .catch(err => console.log(err) );
+        .catch(err => console.log(err));
     }
   }
 };

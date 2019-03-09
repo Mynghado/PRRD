@@ -1,7 +1,9 @@
 <template>
-<div class="about">
-    <h1>This is team page</h1>
-  </div>
+  <v-container>
+    <v-layout align-start justify-center row>
+      <h1 class="display-2">En construction</h1>
+    </v-layout>
+  </v-container>
 </template>
 <script>
 export default {

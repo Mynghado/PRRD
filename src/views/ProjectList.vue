@@ -1,27 +1,27 @@
 <template>
   <div id="ProjectList">
-    <v-container class="my-5">
-      <v-layout row justify-start class="mb-3">
-        <v-tooltip top>
-          <v-btn small flat color="grey" @click="sortBy('name')" slot="activator">
-            <v-icon small left>folder</v-icon>
-            <span class="caption text-lowercase">Par nom de projet</span>
-          </v-btn>
-          <span>Trier en fonction du nom du projet</span>
-        </v-tooltip>
-        <v-tooltip top>
-          <v-btn small flat color="grey" @click="sortBy('manager')" slot="activator">
-            <v-icon small left>person</v-icon>
-            <span class="caption text-lowercase">Par chef de projet</span>
-          </v-btn>
-          <span>Trier en fonction du chef du projet</span>
-        </v-tooltip>
-        <v-tooltip top>
-          <v-btn small flat color="grey" @click="sortBy('name')" slot="activator">
+    <v-container>
+      <v-layout row>
+        <v-flex xs12>
+          <v-tooltip top>
+            <v-btn small flat color="grey" @click="sortBy('name')" slot="activator">
+              <v-icon small left>folder</v-icon>
+              <span class="caption">Par nom de projet</span>
+            </v-btn>
+            <span>Trier en fonction du nom du projet</span>
+          </v-tooltip>
+          <v-tooltip top>
+            <v-btn small flat color="grey" @click="sortBy('manager')" slot="activator">
+              <v-icon small left>person</v-icon>
+              <span class="caption">Par chef de projet</span>
+            </v-btn>
+            <span>Trier en fonction du chef du projet</span>
+          </v-tooltip>
+          <v-btn small flat color="grey" slot="activator">
             <v-icon small left>create</v-icon>
-            <span @click="goToAddProject()" class="caption text-lowercase">Creer un nouveau suivi de projet</span>
+            <span @click="goToAddProject()" class="caption">Creer un nouveau suivi de projet</span>
           </v-btn>
-        </v-tooltip>
+        </v-flex>
       </v-layout>
 
       <v-card flat v-for="project in projects.data" :key="project._id">
@@ -39,16 +39,7 @@
             <div class="caption grey--text">Date butoir</div>
             <div>{{ project.marker }}</div>
           </v-flex>
-          <!--<v-flex xs2 sm4 md2>
-            <div class="right hidden-xs-only">
-              <v-chip
-                small
-                :class="`${project.class} white--text my-2 caption`"
-              >{{ project.status }}</v-chip>
-            </div>
-          </v-flex>-->
         </v-layout>
-        <v-divider></v-divider>
       </v-card>
     </v-container>
   </div>
@@ -64,10 +55,10 @@ export default {
     return {
       projects: [
         {
-          _id: '',
-          project_name: '',
-          project_manager: '',
-          marker: ''
+          _id: "",
+          project_name: "",
+          project_manager: "",
+          marker: ""
         }
       ]
     };
@@ -77,10 +68,10 @@ export default {
       this.projects.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
     },
     goToGantt(projectId) {
-      this.$router.push({ name: "gantt", params: {projectId: projectId} });
+      this.$router.push({ name: "gantt", params: { projectId: projectId } });
     },
-    goToAddProject(){
-       this.$router.push({ name: "addProject" });
+    goToAddProject() {
+      this.$router.push({ name: "addProject" });
     },
     async loadDatas() {
       try {
@@ -90,7 +81,7 @@ export default {
   },
 
   beforeMount() {
-    this.loadDatas()
+    this.loadDatas();
   }
 };
 </script>
