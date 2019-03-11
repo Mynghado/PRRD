@@ -39,7 +39,7 @@ export default new Vuex.Store({
                         const token = resp.data.token
                         const user = resp.data.user
                         localStorage.setItem('token', token)
-                        axios.defaults.headers.common['Authorization'] = token
+                        axios.defaults.headers.common['Authorization'] = `JWT ${token}`
                         commit('auth_success', token, user)
                         resolve(resp)
                     })
