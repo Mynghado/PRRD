@@ -62,6 +62,7 @@ export default {
         nomUtilisateur: this.nomUtilisateur,
         password: this.password
       };
+      /* eslint-disable */
       this.$store
         .dispatch("login", user)
         .then(() => this.$router.push({ name: "home" }))
