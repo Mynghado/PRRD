@@ -55,4 +55,8 @@ export default {
 .v-btn:hover:before{
     background-color: unset !important;
 }
+.theme--light.v-toolbar
+{
+  background-color: unset;
+}
 </style>
